@@ -32,10 +32,9 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "npm-run-all start:db --serial start:front start:back --parallel",
+    "start": "npm-run-all start:back start:front -p",
     "start:front": "react-scripts start",
     "start:back": "node ./server/server.js",
-    "start:db": "docker-compose -f ../db/docker-compose.yml up -d",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
@@ -10,20 +11,15 @@ const SingUp = () => {
   const [phonenumber, setPhonenumber] = useState('');
 
   const handleSignUp = () => {
-    // axios.defaults.baseURL = `http://localhost:${process.env.EXPRESS_PORT}`;
     axios
       .post('http://localhost:4242/account/signup', {
         username,
         password,
         email,
-        // phonenumber,
+        phonenumber,
       })
-      .then((res) => {
-        // do something...
-        console.log(res);
-        //   Cookies.set('token', res.);
-      })
-      .catch(console.log);
+      .then((res) => {})
+      .catch(<Redirect to="/account/signup" />);
   };
 
   return (
@@ -33,7 +29,9 @@ const SingUp = () => {
         <input
           type="text"
           placeholder="username"
-          onChange={(e) => setUsername(e.currentTarget.value)}
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
           required
         />
         <br />
@@ -48,7 +46,7 @@ const SingUp = () => {
           type="password"
           placeholder="check password"
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-          onChange={(e) => setPassword(e.currentTarget.value)}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
         <br />
@@ -56,7 +54,7 @@ const SingUp = () => {
           type="email"
           placeholder="email"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-          onChange={(e) => setEmail(e.currentTarget.value)}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <br />
@@ -64,7 +62,7 @@ const SingUp = () => {
           type="tel"
           placeholder="phone number"
           pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
-          onChange={(e) => setPhonenumber(e.currentTarget.value)}
+          onChange={(e) => setPhonenumber(e.target.value)}
           required
         />
         <small>Format: 123-4566-7890</small>

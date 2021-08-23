@@ -4,16 +4,14 @@ import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const WriteBoard = () => {
+  const [title, setTitle] = useState('');
   const [text, setText] = useState('');
-
-  const handleWriteBoard = (e) => {
-    setText(e.currentTarget.value);
-  };
 
   const handleUpdateWrite = () => {
     axios.defaults.baseURL = `http://localhost:${process.env.EXPRESS_PORT}`;
     axios
       .post('/board/write', {
+        title,
         text,
       })
       .then((res) => {
@@ -28,9 +26,15 @@ const WriteBoard = () => {
     <form>
       <input
         type="text"
+        placeholder="글 제목"
+        value={title}
+        onChange={(e) => setTitle(e.currentTarget.value)}
+      />
+      <input
+        type="text"
         placeholder="글을 입력해주세요."
         value={text}
-        onChange={handleWriteBoard}
+        onChange={(e) => setText(e.currentTarget.value)}
       />
       <br />
       <Button type="submit" onClick={handleUpdateWrite}>

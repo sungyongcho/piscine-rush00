@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import Cookies from 'js-cookie';
+import Cookies from 'js-cookie';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -12,16 +12,14 @@ const Login = () => {
   const handleLogin = () => {
     axios.defaults.baseURL = `http://localhost:${process.env.EXPRESS_PORT}`;
     axios
-      .post('/accout/login', {
+      .post('/account/login', {
         username,
         password,
       })
       .then((res) => {
-        // do something...
-        console.log(res);
-        //   Cookies.set('token', res.);
+        Cookies.set('token', res.data.token);
       })
-      .catch(console.log);
+      .catch(<Redirect to="/account/signup" />);
   };
 
   const handleKeyPress = (event) => {

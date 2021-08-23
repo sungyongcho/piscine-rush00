@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
@@ -12,7 +13,7 @@ const SingUp = () => {
   const handleSignUp = () => {
     axios.defaults.baseURL = `http://localhost:${process.env.EXPRESS_PORT}`;
     axios
-      .post('/accout/signup', {
+      .post('/account/signup', {
         username,
         password,
         email,
@@ -23,7 +24,7 @@ const SingUp = () => {
         console.log(res);
         //   Cookies.set('token', res.);
       })
-      .catch(console.log);
+      .catch(<Redirect to="/account/signup" />);
   };
 
   return (
@@ -69,7 +70,7 @@ const SingUp = () => {
         />
         <small>Format: 123-4566-7890</small>
         <br />
-        <Button type="submit" onCllick={handleSignUp}>
+        <Button type="submit" onClick={handleSignUp}>
           Signup
         </Button>
       </form>

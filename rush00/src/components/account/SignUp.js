@@ -10,13 +10,13 @@ const SingUp = () => {
   const [phonenumber, setPhonenumber] = useState('');
 
   const handleSignUp = () => {
-    axios.defaults.baseURL = `http://localhost:${process.env.EXPRESS_PORT}`;
+    // axios.defaults.baseURL = `http://localhost:${process.env.EXPRESS_PORT}`;
     axios
-      .post('/accout/signup', {
+      .post('http://localhost:4242/account/signup', {
         username,
         password,
         email,
-        phonenumber,
+        // phonenumber,
       })
       .then((res) => {
         // do something...
@@ -69,7 +69,7 @@ const SingUp = () => {
         />
         <small>Format: 123-4566-7890</small>
         <br />
-        <Button type="submit" onCllick={handleSignUp}>
+        <Button type="submit" onClick={handleSignUp}>
           Signup
         </Button>
       </form>

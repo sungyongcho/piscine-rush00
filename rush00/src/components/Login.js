@@ -7,14 +7,6 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleUsername = (event) => {
-    setUsername(event.currentTarget.value);
-  };
-
-  const handlePassword = (event) => {
-    setPassword(event.currentTarget.value);
-  };
-
   const handleLogin = () => {
     axios.defaults.baseURL = `http://localhost:${process.env.EXPRESS_PORT}`;
     axios
@@ -44,7 +36,7 @@ const Login = () => {
           type="text"
           placeholder="username"
           value={username}
-          onChange={handleUsername}
+          onChange={(e) => setUsername(e.currentTarget.value)}
           required
         />
         <br />
@@ -52,7 +44,7 @@ const Login = () => {
           type="password"
           placeholder="Password"
           value={password}
-          onChange={handlePassword}
+          onChange={(e) => setPassword(e.currentTarget.value)}
           required
         />
         <br />

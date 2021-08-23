@@ -5,7 +5,6 @@ const { User } = require('../../models');
 
 const loginPost = async (req, res) => {
   const info = req.body;
-  let cookie;
   
   try {
     const userData = await User.findOne({

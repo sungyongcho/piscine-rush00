@@ -1,41 +1,24 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 
 const app = express();
-const https = require('https');
-require('dotenv').config();
 
-const port = process.env.EXPRESS_PORT || 3001;
+// require('dotenv').config();
 
-app.set('port', port);
+// const port = process.env.EXPRESS_PORT || 3001;
+// app.set('port', port);
 
-app.use('/', (req, res) => {
-  const options = {
-    host: 'api.notion.com',
-    port: 443,
-    path: '/v1/databases',
-    method: 'GET',
-    headers: {
-      Authorization:
-        'Bearer secret_uzsit5xY56mYnpj2fMzKqN9A63a7yBuzkjFs0qVkRN7',
-      'Notion-Version': '2021-08-16',
-    },
-  };
+const port = 80; // 나중에 환경변수 포트로 변경 필요
 
-  const httpssreq = https.request(options, (response) => {
-    let data = '';
+const main = require('./route/main');
+const account = require('./route/account');
+const board = require('./route/board');
 
-    response.setEncoding('utf8');
-    response.on('data', (chunk) => {
-      data += chunk.toString();
-    });
-    response.on('end', () => {
-      const body = JSON.parse(data);
-      res.send(body);
-    });
-  });
-  httpssreq.end();
-});
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.use(cookieParser());
+app.use('/', main);
+app.use('/account', account);
+app.use('/board', board);
 
-app.listen(port, () => {
-  console.log(`express is running on ${port}`);
-});
+app.listen(port, () => console.log(`Port ${port} is running ..,`));

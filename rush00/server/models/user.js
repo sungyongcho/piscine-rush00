@@ -33,6 +33,7 @@ module.exports = class User extends Sequelize.Model {
         });
     }
     static associate(db) {
+        // db.User.hasMany(db.Board, { foreignKey: 'border', sourceKey: 'id' });
         db.User.hasMany(db.Comment, { foreignKey: 'commenter', sourceKey: 'id' });
     }
 };

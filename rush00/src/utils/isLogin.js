@@ -1,5 +1,8 @@
 import Cookies from 'js-cookie';
+import { useJwt } from 'react-jwt';
 
-const isLogin = () => !!Cookies.get('token');
+const { decodedToken, isExpired } = useJwt(Cookies.get('token'));
+
+const isLogin = () => !!isExpired;
 
 export default isLogin;

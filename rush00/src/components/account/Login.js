@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { Link, Redirect } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,7 +16,9 @@ const Login = () => {
         username,
         password,
       })
-      .then((res) => {})
+      .then((res) => {
+        Cookies.set('token', res.headers.jwt_cookie);
+      })
       .catch(<Redirect to="/account/signup" />);
   };
 

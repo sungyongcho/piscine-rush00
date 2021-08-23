@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import Cookies from 'js-cookie';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 
@@ -20,9 +21,7 @@ const SingUp = () => {
         phonenumber,
       })
       .then((res) => {
-        // do something...
-        console.log(res);
-        //   Cookies.set('token', res.);
+        Cookies.set('token', res.data.token);
       })
       .catch(<Redirect to="/account/signup" />);
   };

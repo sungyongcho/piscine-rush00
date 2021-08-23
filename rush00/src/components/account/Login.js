@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Cookies from 'js-cookie';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -17,7 +16,7 @@ const Login = () => {
         password,
       })
       .then((res) => {
-        Cookies.set('token', res.data.token);
+        console.log(res);
       })
       .catch(<Redirect to="/account/signup" />);
   };

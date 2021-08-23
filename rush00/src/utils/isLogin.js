@@ -1,4 +1,4 @@
-import Cookies from 'js-cookie';
+import { useJwt } from 'react-jwt';
 
 const isLogin = () => !!Cookies.get('token');
 

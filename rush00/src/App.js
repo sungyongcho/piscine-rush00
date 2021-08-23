@@ -40,7 +40,7 @@ function App() {
         <PublicRoute
           restricted
           exact
-          path="/board/content"
+          path="/board/content/:contentId"
           component={BoardContent}
         />
       </Switch>

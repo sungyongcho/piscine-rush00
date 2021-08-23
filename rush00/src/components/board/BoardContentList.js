@@ -11,7 +11,7 @@ const BoardContentList = ({ contentInfos }) => {
   const boardContentList = contentInfos.map(
     ({ contentId, title, writername }) => (
       <form>
-        <Link to="/board/content?board_id=" params={{ contentId }}>
+        <Link to={`/board/content/${contentId}`} params={{ contentId }}>
           <Button type="button">
             {contentId}) title: {title} by {writername}
           </Button>

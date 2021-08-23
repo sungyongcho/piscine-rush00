@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import Cookies from 'js-cookie';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 
@@ -12,10 +11,6 @@ const SingUp = () => {
   const [phonenumber, setPhonenumber] = useState('');
 
   const handleSignUp = () => {
-    console.log(username);
-    console.log(password);
-    // e.preventDefault();
-    // axios.defaults.baseURL = `http://localhost:${process.env.EXPRESS_PORT}`;
     axios
       .post('http://localhost:4242/account/signup', {
         username,
@@ -23,11 +18,7 @@ const SingUp = () => {
         email,
         phonenumber,
       })
-      .then((res) => {
-        console.log('res');
-        console.log(res);
-        Cookies.set('token', res.data.token);
-      })
+      .then((res) => {})
       .catch(<Redirect to="/account/signup" />);
   };
 

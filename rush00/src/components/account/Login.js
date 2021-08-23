@@ -9,15 +9,13 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    axios.defaults.baseURL = `http://localhost:${process.env.EXPRESS_PORT}`;
+    // axios.defaults.baseURL = `http://localhost:${process.env.EXPRESS_PORT}`;
     axios
-      .post('/account/login', {
+      .post('http://localhost:4242/account/login', {
         username,
         password,
       })
-      .then((res) => {
-        console.log(res);
-      })
+      .then((res) => {})
       .catch(<Redirect to="/account/signup" />);
   };
 

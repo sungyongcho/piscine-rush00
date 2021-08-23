@@ -2,12 +2,13 @@ import React from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import Nav from './components/Nav';
 import PublicRoute from './components/PublicRoute';
-import PrivateRoute from './components/PrivateRoute';
+// import PrivateRoute from './components/PrivateRoute';
 import Main from './components/Main';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Profile from './components/Profile';
 import Board from './components/Board';
+import WriteBoard from './components/WriteBoard';
 
 function App() {
   return (
@@ -22,8 +23,22 @@ function App() {
           path="/account/signup"
           component={SignUp}
         />
-        <PrivateRoute exact path="/account/profile" component={Profile} />
+        <PublicRoute
+          restricted
+          exact
+          path="/account/profile"
+          component={Profile}
+        />
+        <PublicRoute restricted exact path="/board" component={Board} />
+        <PublicRoute
+          restricted
+          exact
+          path="/board/write"
+          component={WriteBoard}
+        />
+        {/* <PrivateRoute exact path="/account/profile" component={Profile} />
         <PrivateRoute exact path="/board" component={Board} />
+		<PrivateRoute exact path="/board" component={Board} /> */}
       </Switch>
     </BrowserRouter>
   );

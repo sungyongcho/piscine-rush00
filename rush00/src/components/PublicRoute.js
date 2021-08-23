@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import isLogin from '../utils/isLogin';
 
 const PublicRoute = ({ component: Component, restricted, ...rest }) => (
@@ -16,5 +17,10 @@ const PublicRoute = ({ component: Component, restricted, ...rest }) => (
     }
   />
 );
+
+PublicRoute.propTypes = {
+  component: PropTypes.func.isRequired,
+  restricted: PropTypes.bool.isRequired,
+};
 
 export default PublicRoute;

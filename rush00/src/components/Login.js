@@ -3,8 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 // import Cookies from 'js-cookie';
 
-const Login = (props) => {
-  console.log(`login: ${props}`);
+const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 

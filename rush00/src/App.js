@@ -9,6 +9,7 @@ import SignUp from './components/account/SignUp';
 import Profile from './components/profile/Profile';
 import Board from './components/board/Board';
 import WriteBoard from './components/board/WriteBoard';
+import BoardContent from './components/board/BoardContent';
 
 function App() {
   return (
@@ -36,9 +37,12 @@ function App() {
           path="/board/write"
           component={WriteBoard}
         />
-        {/* <PrivateRoute exact path="/account/profile" component={Profile} />
-        <PrivateRoute exact path="/board" component={Board} />
-		<PrivateRoute exact path="/board" component={Board} /> */}
+        <PublicRoute
+          restricted
+          exact
+          path="/board/content/:contentId"
+          component={BoardContent}
+        />
       </Switch>
     </BrowserRouter>
   );

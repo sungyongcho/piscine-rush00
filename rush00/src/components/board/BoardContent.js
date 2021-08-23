@@ -5,12 +5,14 @@ import PropTypes from 'prop-types';
 const BoardContent = ({ contentId }) => {
   const [title, setTitle] = useState('title');
   const [text, setText] = useState('text');
+  const [writername, setWriterName] = useState('writer');
 
   axios
     .get(`/board/content?board_id=${contentId}`)
     .then((res) => {
       setTitle(res.data.title);
       setText(res.data.text);
+      setWriterName(res.data.writername);
     })
     .catch(console.log);
 
@@ -21,6 +23,7 @@ const BoardContent = ({ contentId }) => {
       <div>
         <section>{text}</section>
       </div>
+      <small>{writername}</small>
     </div>
   );
 };

@@ -4,10 +4,8 @@ const router = express.Router();
 const auth = require('./data/auth');
 
 router
-  .get('/login')
-  .post('/login')
-  .get('/logout')
-  .get('/signup')
-  .post('/signup');
+  .post('/login', auth.loginPost)
+  .post('/signup', auth.singupPost)
+  .get('/logout', auth.logoutGet);
 
 module.exports = router;

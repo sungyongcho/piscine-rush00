@@ -33,7 +33,7 @@ const loginPost = async (req, res) => {
 
 const singupPost = (req, res) => {
   const info = req.body;
-
+  console.log(info);
   const hashPassword = bcrypt.hashSync(info.password, 10);
 
   User.create({

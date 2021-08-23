@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const WriteBoard = () => {
   const [text, setText] = useState('');
@@ -31,9 +33,9 @@ const WriteBoard = () => {
         onChange={handleWriteBoard}
       />
       <br />
-      <button type="submit" onClick={handleUpdateWrite}>
+      <Button type="submit" onClick={handleUpdateWrite}>
         Update
-      </button>
+      </Button>
       <br />
     </form>
   );

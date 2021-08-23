@@ -31,6 +31,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use('/', main);
 app.use('/account', account);
-app.use('/board/content', board);
+app.use('/board', board);
 
 app.listen(port, () => console.log(`Port ${port} is running ..,`));

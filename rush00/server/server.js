@@ -2,17 +2,14 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const morgan = require('morgan');
-const nunjucks = require('nunjucks');
 
 const { sequelize } = require('./models');
 
 const app = express();
 
-const port = 80; // 나중에 환경변수 포트로 변경 필요
+require('dotenv').config();
 
-// require('dotenv').config();
-
-// const port = process.env.EXPRESS_PORT || 3001;
+const port = process.env.EXPRESS_PORT || 3001;
 
 app.set('port', port);
 

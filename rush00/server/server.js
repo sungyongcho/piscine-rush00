@@ -2,6 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const morgan = require('morgan');
+const cors = require('cors');
 
 const { sequelize } = require('./models');
 
@@ -22,6 +23,7 @@ const main = require('./route/main');
 const account = require('./route/account');
 const board = require('./route/board');
 
+app.use(cors());
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());

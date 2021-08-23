@@ -7,10 +7,10 @@ const Nav = () => {
       <Link to="/">
         <button>Main</button>
       </Link>
-      <Link to="/login">
+      <Link to="/account/login">
         <button>Login</button>
       </Link>
-      <Link to="/profile">
+      <Link to="/account/profile">
         <button>Profile</button>
       </Link>
       <Link to="/board">

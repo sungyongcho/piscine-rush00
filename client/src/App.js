@@ -15,14 +15,19 @@ function App() {
       <Nav />
       <Switch>
         <PublicRoute restricted={false} exact path="/" component={Main} />
-        <PublicRoute restricted={true} exact path="/login" component={Login} />
         <PublicRoute
           restricted={true}
           exact
-          path="/signup"
+          path="/account/login"
+          component={Login}
+        />
+        <PublicRoute
+          restricted={true}
+          exact
+          path="/account/signup"
           component={SignUp}
         />
-        <PrivateRoute exact path="/profile" component={Profile} />
+        <PrivateRoute exact path="/account/profile" component={Profile} />
         <PrivateRoute exact path="/board" component={Board} />
       </Switch>
     </BrowserRouter>

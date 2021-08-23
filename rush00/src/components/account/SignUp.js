@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 
 const SingUp = () => {
@@ -37,15 +39,15 @@ const SingUp = () => {
         <br />
         <input
           type="password"
-          placeholder="password(6글자이상)"
-          pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_-+=[]{}~?:;`|/]).{6,50}$"
+          placeholder="password(대문자,소문자,숫자 포함 8글자이상)"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
           required
         />
         <br />
         <input
           type="password"
           placeholder="check password"
-          pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_-+=[]{}~?:;`|/]).{6,50}$"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
           onChange={(e) => setPassword(e.currentTarget.value)}
           required
         />
@@ -53,7 +55,7 @@ const SingUp = () => {
         <input
           type="email"
           placeholder="email"
-          pattern=".+@globex\.com"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
           onChange={(e) => setEmail(e.currentTarget.value)}
           required
         />
@@ -67,9 +69,9 @@ const SingUp = () => {
         />
         <small>Format: 123-4566-7890</small>
         <br />
-        <button type="submit" onCllick={handleSignUp}>
+        <Button type="submit" onCllick={handleSignUp}>
           Signup
-        </button>
+        </Button>
       </form>
     </div>
   );

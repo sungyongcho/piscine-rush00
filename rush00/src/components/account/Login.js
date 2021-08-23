@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import Cookies from 'js-cookie';
 
 const Login = () => {
@@ -48,13 +50,13 @@ const Login = () => {
           required
         />
         <br />
-        <button type="submit" onClick={handleLogin} onKeyPress={handleKeyPress}>
+        <Button type="submit" onClick={handleLogin} onKeyPress={handleKeyPress}>
           Login
-        </button>
+        </Button>
         <br />
       </form>
       <Link to="/account/signup">
-        <button type="button">SignUp</button>
+        <Button type="button">SignUp</Button>
       </Link>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
+// import Cookies from 'js-cookie';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -21,6 +22,7 @@ const Login = () => {
     }).then((res) => {
       // do something...
       console.log(res);
+      //   Cookies.set('token', res.);
     });
   };
 

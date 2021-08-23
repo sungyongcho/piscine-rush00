@@ -1,21 +1,18 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
 
-const Profile = () => (
-  <div>
-    <h1>This is Profile page.</h1>
-    <ul>
-      <li>username: </li>
-      <li>email: </li>
-      <li>phonenumber: </li>
-    </ul>
-  </div>
-);
-
-// Profile.propTypes = {
-//   username: PropTypes.string.isRequired,
-//   email: PropTypes.string.isRequired,
-//   phonenumber: PropTypes.string.isRequired,
-// };
+const Profile = () => {
+  const location = useLocation();
+  return (
+    <div>
+      <h1>This is Profile page.</h1>
+      <ul>
+        <li>username: {location.params.username.value}</li>
+        <li>email: {location.params.email.value}</li>
+        <li>phonenumber: {location.params.phonenumber.value}</li>
+      </ul>
+    </div>
+  );
+};
 
 export default Profile;

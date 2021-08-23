@@ -1,35 +1,39 @@
-// import React, { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 
 const Nav = () => {
-  //   const [username, setUsername] = useState('');
-  //   const [email, setEmail] = useState('');
-  //   const [phonenumber, setPhonenumber] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [phonenumber, setPhonenumber] = useState('');
 
   const handleClickProfile = () => {
     Axios.get('/account/profile', {
       headers: {
         Authorization: `Bearer ${Cookies.get('token')}`,
       },
-    }).then((res) => {
-      console.log(res);
-      //   setUsername(res.data.username);
-      //   setEmail(res.data.email);
-      //   setPhonenumber(res.data.phonenumber);
-    });
+    })
+      .then((res) => {
+        console.log(res);
+        setUsername(res.data.username);
+        setEmail(res.data.email);
+        setPhonenumber(res.data.phonenumber);
+      })
+      .catch(console.log);
   };
 
   const handleClickBoard = () => {
-    Axios.get('/board', {
+    Axios.get(`/board`, {
+      params: { page: 1 },
       headers: {
         Authorization: `Bearer ${Cookies.get('token')}`,
       },
-    }).then((res) => {
-      console.log(res);
-    });
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch(console.log);
   };
 
   return (
@@ -43,10 +47,10 @@ const Nav = () => {
       <Link
         to={{
           pathname: '/account/profile',
-          data: {
-            username: 'aaa',
-            email: 'bbb',
-            phonenumber: 'ccc',
+          params: {
+            username: { username },
+            email: { email },
+            phonenumber: { phonenumber },
           },
         }}
       >

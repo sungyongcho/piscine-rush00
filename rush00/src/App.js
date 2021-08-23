@@ -22,8 +22,13 @@ function App() {
           path="/account/signup"
           component={SignUp}
         />
-        <PublicRoute exact path="/account/profile" component={Profile} />
-        <PublicRoute exact path="/board" component={Board} />
+        <PublicRoute
+          restricted
+          exact
+          path="/account/profile"
+          component={Profile}
+        />
+        <PublicRoute restricted exact path="/board" component={Board} />
         {/* <PrivateRoute exact path="/account/profile" component={Profile} />
         <PrivateRoute exact path="/board" component={Board} /> */}
       </Switch>

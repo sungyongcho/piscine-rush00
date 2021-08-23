@@ -15,7 +15,7 @@ const account = require('./route/account');
 const board = require('./route/board');
 
 app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use('/', main);
 app.use('/account', account);

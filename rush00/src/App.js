@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import Nav from './components/Nav';
-import PublicRoute from './components/PublicRoute';
+import PublicRoute from './components/route/PublicRoute';
 // import PrivateRoute from './components/PrivateRoute';
 import Main from './components/Main';
-import Login from './components/Login';
-import SignUp from './components/SignUp';
-import Profile from './components/Profile';
-import Board from './components/Board';
-import WriteBoard from './components/WriteBoard';
+import Login from './components/account/Login';
+import SignUp from './components/account/SignUp';
+import Profile from './components/profile/Profile';
+import Board from './components/board/Board';
+import WriteBoard from './components/board/WriteBoard';
 
 function App() {
   return (

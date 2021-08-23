@@ -16,9 +16,10 @@ const port = 80; // 나중에 환경변수 포트로 변경 필요
 
 app.set('port', port);
 
-sequelize.sync({ force: false })
-    .then(() => console.log('데이터베이스 연결 성공'))
-    .catch((err) => console.log(err))
+sequelize
+  .sync({ force: false })
+  .then(() => console.log('데이터베이스 연결 성공'))
+  .catch((err) => console.log(err));
 
 const main = require('./route/main');
 const account = require('./route/account');

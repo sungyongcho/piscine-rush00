@@ -6,7 +6,7 @@ let favorite;
 
 router
   .get('', (req, res) => {
-    res.send('gogo');
+    console.log()
   })
   .post('', async (req, res) => {
     favorite = req.body.favorite;

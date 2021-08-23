@@ -5,29 +5,45 @@ const { User } = require('../../models');
 
 const loginPost = async (req, res) => {
   const info = req.body;
+  let cookie;
 
-  const userData = await User.findOne({
-    where: {
-      username: info.username,
-    },
-  });
-  if (userData == null) console.log('사용자 정보가 없습니다.');
-  else {
-    const compare = await bcrypt.compareSync(info.password, userData.password);
-    if (!compare) console.log('비밀번호가 맞지 않습니다.');
+  try {
+    const userData = await User.findOne({
+      where: {
+        username: info.username,
+      },
+    }).catch((err) => console.log(`오류 발생 : ${err}`));
+    console.log(userData.email);
+    if (userData == null) console.log('사용자 정보가 없습니다.');
     else {
-      await jwt.sign(
-        { username: userData.username },
-        process.env.JWT_SECRET_KEY,
-        {
-          expiresIn: '1h',
-        },
-        (err, token) => {
-          if (err) console.log('토큰 발행을 실패 하였습니다.');
-          res.cookie('jwt_token', token, { maxAge: 3600000 });
-        },
-      );
+      const compare = bcrypt.compareSync(info.password, userData.password);
+      if (!compare) console.log('비밀번호가 맞지 않습니다.');
+      else {
+        console.log('로그인 성공!');
+        const getToken = () => {
+          return new Promise((resolve, reject) => {
+            cookie = jwt.sign(
+              { username: userData.username },
+              process.env.JWT_SECRET_KEY,
+              {
+                expiresIn: '1h',
+              },
+              (err, token) => {
+                if (err) reject(err);
+                resolve(token);
+              });
+          });
+        }
+        
+        getToken().then(token => {
+          console.log(token);
+          res.cookie('jwt_token', token, { httpOnly: false, maxAge: 60 * 60 * 1000 });
+          res.json(cookie)
+        });
+      }
     }
+  } catch (err) {
+    console.log(`{ "오류 발생" : "${err}" }`);
   }
 };
 
@@ -42,7 +58,7 @@ const singupPost = (req, res) => {
     email: info.email,
   })
     .then(() => {
-      alert('회원가입을 축하드립니다.');
+      console.log('회원가입을 축하드립니다.');
     })
     .catch((err) => console.log(err));
 };

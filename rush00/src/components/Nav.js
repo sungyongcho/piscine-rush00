@@ -1,14 +1,34 @@
+// import React, { useState } from 'react';
 import React from 'react';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 
 const Nav = () => {
+  //   const [username, setUsername] = useState('');
+  //   const [email, setEmail] = useState('');
+  //   const [phonenumber, setPhonenumber] = useState('');
+
   const handleClickProfile = () => {
     Axios.get('/account/profile', {
       headers: {
         Authorization: `Bearer ${Cookies.get('token')}`,
       },
+    }).then((res) => {
+      console.log(res);
+      //   setUsername(res.data.username);
+      //   setEmail(res.data.email);
+      //   setPhonenumber(res.data.phonenumber);
+    });
+  };
+
+  const handleClickBoard = () => {
+    Axios.get('/board', {
+      headers: {
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      },
+    }).then((res) => {
+      console.log(res);
     });
   };
 
@@ -20,13 +40,24 @@ const Nav = () => {
       <Link to="/account/login">
         <button type="button">Login</button>
       </Link>
-      <Link to="/account/profile">
+      <Link
+        to={{
+          pathname: '/account/profile',
+          data: {
+            username: 'aaa',
+            email: 'bbb',
+            phonenumber: 'ccc',
+          },
+        }}
+      >
         <button type="button" onClick={handleClickProfile}>
           Profile
         </button>
       </Link>
       <Link to="/board">
-        <button type="button">Board</button>
+        <button type="button" onClick={handleClickBoard}>
+          Board
+        </button>
       </Link>
     </>
   );

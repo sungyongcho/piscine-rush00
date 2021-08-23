@@ -17,9 +17,9 @@ const Login = (props) => {
   };
 
   const handleLogin = () => {
-    axios.defaults.baseURL = `http://localhost:${process.env.EXPRESS_PORT}`;
+    // axios.defaults.baseURL = `http://localhost:${process.env.EXPRESS_PORT}`;
     axios
-      .post('/accout/login', {
+      .post('http://localhost:4242/account/login', {
         username,
         password,
       })

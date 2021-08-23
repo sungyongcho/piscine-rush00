@@ -39,7 +39,7 @@ const Nav = () => {
   };
 
   return (
-    <>
+    <div>
       <Link to="/">
         <button type="button">Main</button>
       </Link>
@@ -70,7 +70,7 @@ const Nav = () => {
           게시글 쓰기
         </button>
       </Link>
-    </>
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 
@@ -9,11 +9,12 @@ const Nav = () => {
   const [phonenumber, setPhonenumber] = useState('');
 
   const handleClickProfile = () => {
-    Axios.get('/account/profile', {
-      headers: {
-        Authorization: `Bearer ${Cookies.get('token')}`,
-      },
-    })
+    axios
+      .get('/account/profile', {
+        headers: {
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        },
+      })
       .then((res) => {
         console.log(res);
         setUsername(res.data.username);
@@ -24,12 +25,13 @@ const Nav = () => {
   };
 
   const handleClickBoard = () => {
-    Axios.get(`/board`, {
-      params: { page: 1 },
-      headers: {
-        Authorization: `Bearer ${Cookies.get('token')}`,
-      },
-    })
+    axios
+      .get(`/board`, {
+        params: { page: 1 },
+        headers: {
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        },
+      })
       .then((res) => {
         console.log(res);
       })
@@ -61,6 +63,11 @@ const Nav = () => {
       <Link to="/board">
         <button type="button" onClick={handleClickBoard}>
           Board
+        </button>
+      </Link>
+      <Link to="/board/write">
+        <button type="button" onClick={handleClickBoard}>
+          게시글 쓰기
         </button>
       </Link>
     </>

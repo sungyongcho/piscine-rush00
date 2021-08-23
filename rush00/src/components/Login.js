@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 // import Cookies from 'js-cookie';
 
@@ -17,14 +17,18 @@ const Login = (props) => {
   };
 
   const handleLogin = () => {
-    Axios.post('/accout/login', {
-      username,
-      password,
-    }).then((res) => {
-      // do something...
-      console.log(res);
-      //   Cookies.set('token', res.);
-    });
+    axios.defaults.baseURL = `http://localhost:${process.env.EXPRESS_PORT}`;
+    axios
+      .post('/accout/login', {
+        username,
+        password,
+      })
+      .then((res) => {
+        // do something...
+        console.log(res);
+        //   Cookies.set('token', res.);
+      })
+      .catch(console.log);
   };
 
   const handleKeyPress = (event) => {

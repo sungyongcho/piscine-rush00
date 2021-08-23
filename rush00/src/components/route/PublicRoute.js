@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import isLogin from '../utils/isLogin';
+import isLogin from '../../utils/isLogin';
 
 const PublicRoute = ({ component: Component, restricted, ...rest }) => (
   // restricted = false: public rounte

@@ -79,12 +79,14 @@ const logoutGet = async (req, res) => {
     res.json({ redirect: '/' });
   } else console.log('잘못된 로그아웃 요청');
 };
+
 const getProfile = async (req, res) => {
   const userData = {
     username: '',
     email: '',
     accountDate: '',
   };
+
   await jwt.verify(
     req.cookies.jwt_token,
     process.env.JWT_SECRET_KEY,
@@ -93,15 +95,19 @@ const getProfile = async (req, res) => {
       else userData.username = decoded.username;
     },
   );
+
   const user = await User.findOne({
     where: {
       username: userData.username,
     },
   }).catch((err) => console.log(`오류 발생 ${err}`));
+
   userData.email = user.email;
   userData.accountDate = user.created_at;
+
   res.json({ profile: userData });
 };
+
 module.exports.loginPost = loginPost;
 module.exports.logoutGet = logoutGet;
 module.exports.singupPost = singupPost;

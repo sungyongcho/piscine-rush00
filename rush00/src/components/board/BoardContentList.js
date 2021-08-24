@@ -5,6 +5,9 @@ import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const BoardContentList = ({ contentInfos }) => {
+  console.log('hihi10');
+  console.log(contentInfos);
+  console.log('hihi10');
   const boardContentList = contentInfos.map(({ contentId, title, author }) => (
     <form>
       <Link to={`/board/content/${contentId}`} params={{ contentId }}>

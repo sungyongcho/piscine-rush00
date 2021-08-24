@@ -15,6 +15,10 @@ const BoardContent = ({ contentId }) => {
   const [author, setAuthor] = useState('');
   const [comments, setComments] = useState([]);
 
+  console.log('hihi4');
+  console.log(contentId);
+  console.log('hihi4');
+
   axios
     .get(`/board/content/board_id=${contentId}`)
     .then((res) => {

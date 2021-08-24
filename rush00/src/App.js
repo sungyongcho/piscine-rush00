@@ -5,6 +5,7 @@ import PublicRoute from './components/route/PublicRoute';
 import PrivateRoute from './components/route/PrivateRoute';
 import Main from './components/Main';
 import Login from './components/account/Login';
+import Logout from './components/account/Logout';
 import SignUp from './components/account/SignUp';
 import Profile from './components/profile/Profile';
 import Board from './components/board/Board';
@@ -21,18 +22,30 @@ function App() {
         <PublicRoute
           restricted
           exact
+          path="/account/logout"
+          component={Logout}
+        />
+        <PublicRoute
+          restricted
+          exact
           path="/account/signup"
           component={SignUp}
         />
-        <PrivateRoute exact path="/account/profile" component={Profile} />
-        <PrivateRoute exact path="/board" component={Board} />
-        <PrivateRoute
+        <PublicRoute
+          restricted
+          exact
+          path="/account/profile"
+          component={Profile}
+        />
+        <PublicRoute restricted exact path="/board" component={Board} />
+        <PublicRoute
           restricted
           exact
           path="/board/write"
           component={WriteBoard}
         />
-        <PrivateRoute
+        <PublicRoute
+          restricted
           exact
           path="/board/content/:contentId"
           component={BoardContent}

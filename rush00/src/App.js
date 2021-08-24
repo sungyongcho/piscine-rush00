@@ -31,15 +31,21 @@ function App() {
           path="/account/signup"
           component={SignUp}
         />
-        <PrivateRoute exact path="/account/profile" component={Profile} />
-        <PrivateRoute exact path="/board" component={Board} />
-        <PrivateRoute
+        <PublicRoute
+          restricted
+          exact
+          path="/account/profile"
+          component={Profile}
+        />
+        <PublicRoute restricted exact path="/board" component={Board} />
+        <PublicRoute
           restricted
           exact
           path="/board/write"
           component={WriteBoard}
         />
-        <PrivateRoute
+        <PublicRoute
+          restricted
           exact
           path="/board/content/:contentId"
           component={BoardContent}

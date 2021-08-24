@@ -9,6 +9,7 @@ const Logout = () => {
     .catch(console.log);
 
   window.location = '/';
+
 };
 
 export default Logout;

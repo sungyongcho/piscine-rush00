@@ -1,16 +1,15 @@
-import React from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 const Logout = () => {
-  axios //
+  axios
     .get('/account/logout')
     .then((res) => {
       window.location = res.data.redirect;
     })
-    .catch((e) => {
-      console.log(e);
-    });
+    .catch(console.log);
+
+  window.location = '/';
+
 };
 
 export default Logout;

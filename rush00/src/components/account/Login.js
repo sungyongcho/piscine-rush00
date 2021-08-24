@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 // import { useJwt } from 'react-jwt';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import getJwt from '../../utils/getJwt';
+import { setJwt } from 'cookie-parser';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -21,8 +21,9 @@ const Login = () => {
         password,
       })
       .then((res) => {
-        console.log(res);
-        getJwt();
+        // console.log(res);
+        console.log(res.jwt_token);
+        setJwt(res.jwt_token);
       })
       .catch(<Redirect to="/account/signup" />);
   };

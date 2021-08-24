@@ -6,10 +6,11 @@ const list = require('./data/list');
 const content = require('./data/content');
 
 router
-  .get('', list.showBoardList)
-  .post('/content/write', content.contentWrite)
-  .put('content/:board_id/update', content.contentUpdate)
-  .post('/content/:board_id', content.commentWrite)
-  .put('/content/:board_id', content.commentUpdate);
+.put('/content/:board_id/update', content.contentUpdate)
+.post('/content/write', content.contentWrite)
+.get('/content/:board_id', content.showBoard)
+.post('/content/:board_id', content.commentWrite)
+.put('/content/:board_id', content.commentUpdate)
+.get('', list.showBoardList)
 
 module.exports = router;

@@ -33,6 +33,7 @@ const loginPost = async (req, res) => {
           });
         getToken().then((token) => {
           res.cookie('jwt_token', token, {
+            httpOnly: true,
             maxAge: 60 * 60 * 1000,
           });
           res.status(200).json({ redirect: '/' });
@@ -72,7 +73,9 @@ const logoutGet = async (req, res) => {
     where: {
       username: user.username,
     },
-  }).catch((err) => console.log(`오류 발생 ${err}`));
+  })
+    .catch((err) => console.log(`오류 발생 ${err}`));
+
   if (userData.username === user.username) {
     console.log('로그아웃 성공');
     res.clearCookie('jwt_token');
@@ -102,6 +105,7 @@ const getProfile = async (req, res) => {
   userData.accountDate = user.created_at;
   res.json({ profile: userData });
 };
+
 module.exports.loginPost = loginPost;
 module.exports.logoutGet = logoutGet;
 module.exports.singupPost = singupPost;

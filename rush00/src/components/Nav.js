@@ -20,6 +20,11 @@ const Nav = () => (
           </Link>
         </li>
         <li>
+          <Link to="/account/logout">
+            <Button type="button">Logout</Button>
+          </Link>
+        </li>
+        <li>
           <Link to="/account/profile">
             <Button type="button">Profile</Button>
           </Link>

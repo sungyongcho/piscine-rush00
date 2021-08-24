@@ -58,7 +58,7 @@ const showBoardList = (req, res) => {
       returnObj[index] = {
         content_id: element.dataValues.id,
         title: element.dataValues.title,
-        user_name: element.dataValues.user_id,
+        user_name: userId,
       };
 
       return returnObj;

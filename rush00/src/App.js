@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import Nav from './components/Nav';
 import PublicRoute from './components/route/PublicRoute';
-import PrivateRoute from './components/route/PrivateRoute';
+// import PrivateRoute from './components/route/PrivateRoute';
 import Main from './components/Main';
 import Login from './components/account/Login';
 import Logout from './components/account/Logout';

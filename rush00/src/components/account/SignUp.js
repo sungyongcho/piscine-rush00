@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
@@ -26,8 +25,7 @@ const SingUp = () => {
       })
       .then((res) => {
         console.log(res);
-      })
-      .catch(<Redirect to="/account/signup" />);
+      });
   };
 
   return (

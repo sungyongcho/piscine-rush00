@@ -46,9 +46,27 @@ const showBoardList = (req, res) => {
 
   boardData.then((resolve) => {
     data.contentInfos = resolve;
-    res.json(data.contentInfos);
+    const userId = User.findOne({
+      where: {
+        id: boardData.user_id,
+      },
+    });
 
-    console.log(resolve);
+    const newJson = resolve.map((element, index) => {
+      const returnObj = {};
+      // const temp = { content_id: '', title: '', user_id: '' };
+      returnObj[index] = {
+        content_id: element.dataValues.id,
+        title: element.dataValues.title,
+        user_name: element.dataValues.user_id,
+      };
+
+      return returnObj;
+    });
+    console.log(newJson);
+
+    data.contentInfos = newJson;
+    res.json(data.contentInfos);
   });
 };
 

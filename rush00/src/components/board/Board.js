@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BoardContentList from './BoardContentList';
+import Spinner from '../etc/Spinner';
 import './Board.css';
 
 const Board = () => {
+  const [loading, setLoading] = useState({ loading: true });
   const [contentInfos, setContentInfos] = useState([]);
   const [page, setPage] = useState(1);
 
@@ -24,6 +26,8 @@ const Board = () => {
 
   return (
     <div>
+      {loading ? <Spinner /> : null}
+
       <h1>This is board page.</h1>
       <BoardContentList contentInfos={contentInfos} />
       <Link to="/board/write" params={{ defaultTitle: '', defaultContent: '' }}>

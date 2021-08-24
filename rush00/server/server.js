@@ -25,8 +25,8 @@ const account = require('./route/account');
 const board = require('./route/board');
 
 const corsOptions = {
-  origin: ["http://localhost:4200"],
-  credentials: true
+  origin: ['http://localhost:4200'],
+  credentials: true,
 };
 
 app.use(cors(corsOptions));

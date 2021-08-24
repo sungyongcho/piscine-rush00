@@ -36,6 +36,7 @@ const Login = () => {
         console.log(token);
         console.log(getCookie('jwt_token'));
         console.log(res);
+        window.location = res.data.redirect;
       })
       .catch(<Redirect to="/account/signup" />);
   };

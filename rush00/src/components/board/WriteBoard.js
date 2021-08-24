@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import MDEditor from '@uiw/react-md-editor';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const WriteBoard = () => {
   const [title, setTitle] = useState('');
-  const [text, setText] = useState('');
+  const [text, setText] = useState('**Hello world!!!**');
 
   const handleUpdateWrite = () => {
     axios.defaults.baseURL = `http://localhost:${process.env.EXPRESS_PORT}`;
@@ -13,11 +14,6 @@ const WriteBoard = () => {
       .post('/board/write', {
         title,
         text,
-      })
-      .then((res) => {
-        // do something...
-        console.log(res);
-        //   Cookies.set('token', res.);
       })
       .catch(console.log);
   };
@@ -30,12 +26,10 @@ const WriteBoard = () => {
         value={title}
         onChange={(e) => setTitle(e.currentTarget.value)}
       />
-      <input
-        type="text"
-        placeholder="글을 입력해주세요."
-        value={text}
-        onChange={(e) => setText(e.currentTarget.value)}
-      />
+      <div className="container">
+        <MDEditor value={text} onChange={setText} />
+        <MDEditor.Markdown source={text} />
+      </div>
       <br />
       <Button type="submit" onClick={handleUpdateWrite}>
         Update

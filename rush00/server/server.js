@@ -3,12 +3,13 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const morgan = require('morgan');
 const cors = require('cors');
+require('dotenv').config();
 
 const { sequelize } = require('./models');
 
 const app = express();
 
-require('dotenv').config();
+console.log(process.env.EXPRESS_PORT);
 
 const port = process.env.EXPRESS_PORT || 3001;
 // const port = 80;

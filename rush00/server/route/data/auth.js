@@ -5,8 +5,12 @@ const { User } = require('../../models');
 
 const loginPost = async (req, res) => {
   const info = req.body;
+<<<<<<< HEAD
   let cookie;
 
+=======
+  
+>>>>>>> jiwlee
   try {
     const userData = await User.findOne({
       where: {

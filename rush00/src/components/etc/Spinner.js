@@ -4,7 +4,9 @@ import Loader from 'react-loader-spinner';
 
 function Spinner() {
   return (
-    <Loader type="Oval" color="3d66ba" height={30} width={30} timeout={3000} />
+    <Loader type="Puff" color="#00BFFF" height={100} width={100} timeout={3000}>
+      <b>로딩중</b>
+    </Loader>
   );
 }
 

@@ -2,13 +2,20 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 // import { useJwt } from 'react-jwt';
+import { Cookies } from 'react-cookie';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import getJwt from '../../utils/getJwt';
+// import { setJwt } from 'cookie-parser';
+
+const cookies = new Cookies();
+export const setCookie = (name, value, option) =>
+  cookies.set(name, value, { ...option });
+export const getCookie = (name) => cookies.get(name);
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  let token;
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -21,8 +28,14 @@ const Login = () => {
         password,
       })
       .then((res) => {
+        setCookie('jwt_token', token, {
+          path: '/',
+          secure: true,
+        });
+        console.log('check-cookies');
+        console.log(token);
+        console.log(getCookie('jwt_token'));
         console.log(res);
-        getJwt();
       })
       .catch(<Redirect to="/account/signup" />);
   };

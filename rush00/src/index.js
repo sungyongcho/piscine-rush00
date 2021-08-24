@@ -2,15 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import './index.css';
+import { CookiesProvider } from 'react-cookie';
 import App from './App';
 
 axios.defaults.baseURL = 'http://localhost:4242';
 axios.defaults.withCredentials = true;
 
 ReactDOM.render(
-  <React.StrictMode>
+  <CookiesProvider>
     <App />
-  </React.StrictMode>,
+  </CookiesProvider>,
   document.getElementById('root'),
 );
 

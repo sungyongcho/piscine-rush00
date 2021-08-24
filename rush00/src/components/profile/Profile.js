@@ -9,7 +9,6 @@ const Profile = () => {
   axios
     .get('/account/profile')
     .then((res) => {
-      console.log(res);
       setUsername(res.data.username);
       setEmail(res.data.email);
       setPhonenumber(res.data.phonenumber);

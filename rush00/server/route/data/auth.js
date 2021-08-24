@@ -30,13 +30,19 @@ const loginPost = async (req, res) => {
               (err, token) => {
                 if (err) reject(err);
                 else resolve(token);
-              });
-            });
-          }
-          getToken().then(token => {
-            res.status(200).cookie('jwt_token', token, { httpOnly: true, maxAge: 60 * 60 * 1000 }).send('Success set Token');
-            console.log(token)
+              },
+            );
           });
+        };
+        getToken().then((token) => {
+          res
+            .status(200)
+            .cookie('jwt_token', token, {
+              httpOnly: true,
+              maxAge: 60 * 60 * 1000,
+            })
+            .send('gogo');
+        });
       }
     }
   } catch (err) {

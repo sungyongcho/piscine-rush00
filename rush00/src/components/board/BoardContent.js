@@ -9,7 +9,7 @@ const BoardContent = ({ contentId }) => {
 
   axios
     // .get(`/board/content?board_id=${contentId}`)
-    .get(`/board/content?board_content=${contentId}`)
+    .get(`/board/content/board_id=${contentId}`)
     .then((res) => {
       setTitle(res.data.title);
       setText(res.data.text);

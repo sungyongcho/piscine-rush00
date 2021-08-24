@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import MDEditor from '@uiw/react-md-editor';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -14,11 +15,6 @@ const WriteBoard = () => {
         title,
         text,
       })
-      .then((res) => {
-        // do something...
-        console.log(res);
-        //   Cookies.set('token', res.);
-      })
       .catch(console.log);
   };
 
@@ -30,12 +26,14 @@ const WriteBoard = () => {
         value={title}
         onChange={(e) => setTitle(e.currentTarget.value)}
       />
-      <input
-        type="text"
-        placeholder="글을 입력해주세요."
-        value={text}
-        onChange={(e) => setText(e.currentTarget.value)}
-      />
+      <br />
+      <div className="container">
+        <MDEditor value={text} onChange={setText} />
+        <div>
+          <MDEditor.Markdown source={text} />
+        </div>
+        <div> {text}</div>
+      </div>
       <br />
       <Button type="submit" onClick={handleUpdateWrite}>
         Update

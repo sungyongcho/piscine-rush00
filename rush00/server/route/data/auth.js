@@ -38,7 +38,7 @@ const loginPost = async (req, res) => {
           res
             .status(200)
             .cookie('jwt_token', token, {
-              httpOnly: true,
+              //   httpOnly: true,
               maxAge: 60 * 60 * 1000,
             })
             .send('gogo');

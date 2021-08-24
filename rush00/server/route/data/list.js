@@ -29,8 +29,6 @@ const showBoardList = (req, res) => {
   //   }
   // }
 
-  console.log();
-
   const pageNum = Number(req.query.page); // 요청 페이지 넘버
   let offset = 0;
   const data = {
@@ -44,7 +42,9 @@ const showBoardList = (req, res) => {
     // pagination
     offset,
     limit: 10,
-  }).then((resolve) => {
+  });
+
+  boardData.then((resolve) => {
     data.contentInfos = resolve;
     res.json(data.contentInfos);
 

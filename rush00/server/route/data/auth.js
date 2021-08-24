@@ -39,7 +39,6 @@ const loginPost = async (req, res) => {
             maxAge: 60 * 60 * 1000,
           });
           res.status(200).json({ redirect: '/' });
-
         });
       }
     }

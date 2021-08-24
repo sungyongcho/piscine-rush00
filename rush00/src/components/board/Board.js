@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,9 +13,6 @@ const Board = () => {
   axios
     .get(`/board`, {
       params: { page: 1 },
-      headers: {
-        Authorization: `Bearer ${Cookies.get('token')}`,
-      },
     })
     .then((res) => {
       console.log(res);

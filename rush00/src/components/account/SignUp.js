@@ -10,15 +10,21 @@ const SingUp = () => {
   const [email, setEmail] = useState('');
   const [phonenumber, setPhonenumber] = useState('');
 
-  const handleSignUp = () => {
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    console.log(username);
+    console.log(password);
+    console.log(email);
+    console.log(phonenumber);
+    console.log('signup');
     axios
-      .post('http://localhost:4242/account/signup', {
+      .post('/account/signup', {
         username,
         password,
         email,
         phonenumber,
       })
-      .then((res) => {})
+      .then(() => {})
       .catch(<Redirect to="/account/signup" />);
   };
 

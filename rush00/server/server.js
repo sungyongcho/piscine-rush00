@@ -11,7 +11,8 @@ const app = express();
 
 console.log(process.env.EXPRESS_PORT);
 
-const port = process.env.EXPRESS_PORT || 3001;
+// const port = process.env.EXPRESS_PORT || 3001;
+const port = 80;
 
 app.set('port', port);
 

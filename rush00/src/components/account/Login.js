@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Cookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+const cookies = new Cookies();
+export const setCookie = (name, value, option) =>
+  cookies.set(name, value, { ...option });
+export const getCookie = (name) => cookies.get(name);
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     axios
       .post('/account/login', {
         username,
         password,
       })
       .then((res) => {
+        getCookie('jwt_token');
         window.location = res.data.redirect;
       })
       .catch(() => {

@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  let token;
 
-  const handleLogin = (e) => {
+  const handleLogin = () => {
     axios
       .post('/account/login', {
         username,

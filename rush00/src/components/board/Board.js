@@ -9,10 +9,7 @@ import Spinner from '../etc/Spinner';
 
 const Board = () => {
   const [loading, setLoading] = useState({ loading: true });
-
-  const [contentInfos, setContentInfos] = useState([
-    { contentId: 1, title: 'aaa', writername: 'bbb' },
-  ]);
+  const [contentInfos, setContentInfos] = useState([]);
   axios
     .get(`/board`, {
       params: { page: 8 },
@@ -30,7 +27,7 @@ const Board = () => {
 
       <h1>This is board page.</h1>
       <BoardContentList contentInfos={contentInfos} />
-      <Link to="/board/write">
+      <Link to="/board/write" params={{ defaultTitle: '', defaultContent: '' }}>
         <Button type="button">write</Button>
       </Link>
       <Paging />

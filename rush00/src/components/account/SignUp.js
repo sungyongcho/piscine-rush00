@@ -24,7 +24,9 @@ const SingUp = () => {
         email,
         phonenumber,
       })
-      .then(() => {})
+      .then((res) => {
+        console.log(res);
+      })
       .catch(<Redirect to="/account/signup" />);
   };
 

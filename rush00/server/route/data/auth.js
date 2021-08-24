@@ -5,7 +5,12 @@ const { User } = require('../../models');
 
 const loginPost = async (req, res) => {
   const info = req.body;
+<<<<<<< HEAD
+  let cookie;
+
+=======
   
+>>>>>>> jiwlee
   try {
     const userData = await User.findOne({
       where: {
@@ -30,13 +35,19 @@ const loginPost = async (req, res) => {
               (err, token) => {
                 if (err) reject(err);
                 else resolve(token);
-              });
-            });
-          }
-          getToken().then(token => {
-            res.status(200).cookie('jwt_token', token, { httpOnly: true, maxAge: 60 * 60 * 1000 }).send('gogo');
+              },
+            );
           });
-        
+        };
+        getToken().then((token) => {
+          res
+            .status(200)
+            .cookie('jwt_token', token, {
+              httpOnly: true,
+              maxAge: 60 * 60 * 1000,
+            })
+            .send('gogo');
+        });
       }
     }
   } catch (err) {

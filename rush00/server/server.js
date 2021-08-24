@@ -11,8 +11,8 @@ const app = express();
 
 console.log(process.env.EXPRESS_PORT);
 
-// const port = process.env.EXPRESS_PORT || 3001;
-const port = 80;
+const port = process.env.EXPRESS_PORT || 3001;
+// const port = 80;
 
 app.set('port', port);
 
@@ -25,7 +25,11 @@ const main = require('./route/main');
 const account = require('./route/account');
 const board = require('./route/board');
 
-app.use(cors());
+const corsOptions = {
+  origin: ['http://localhost:4200'],
+  credentials: true,
+};
+app.use(cors(corsOptions));
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());

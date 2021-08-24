@@ -18,11 +18,11 @@ const BoardContent = ({ contentId }) => {
   axios
     .get(`/board/content/board_id=${contentId}`)
     .then((res) => {
-      setTitle(res.data.getBoard.boardData.title);
-      setContent(res.data.getBoard.boardData.content);
-      setUsername(res.data.getBoard.requestUser);
-      setAuthor(res.data.getBoard.boardData.author);
-      setComments(res.data.getBoards.contentData);
+      setTitle(res.data.Board.dataValues.title);
+      setContent(res.data.Board.dataValues.content);
+      setUsername(res.data.Board.dataValues.requestUser);
+      setAuthor(res.data.Board.dataValues.boardData.author);
+      setComments(res.data.Board.dataValues.contentData);
     })
     .catch(console.log);
 

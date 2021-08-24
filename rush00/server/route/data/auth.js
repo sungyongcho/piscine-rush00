@@ -70,22 +70,21 @@ const singupPost = (req, res) => {
 
 const logoutGet = async (req, res) => {
   let user;
-
   await jwt.verify(
-    req.cookies.jwt_cookie,
+    req.cookies.jwt_token,
     process.env.JWT_SECRET_KEY,
     (err, decoded) => {
       user = decoded;
     },
   );
-
+  console.log(user);
   const userData = await User.findOne({
     where: {
-      username: user,
+      username: user.username,
     },
   });
 
-  if (userData.username === user) {
+  if (userData.username === user.username) {
     console.log('로그아웃 성공');
     res.clearCookie('jwt_token');
     res.json({ redirect: '/' });

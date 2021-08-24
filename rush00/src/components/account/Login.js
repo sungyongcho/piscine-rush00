@@ -15,7 +15,6 @@ export const getCookie = (name) => cookies.get(name);
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  let token;
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -28,13 +27,7 @@ const Login = () => {
         password,
       })
       .then((res) => {
-        setCookie('jwt_token', token, {
-          path: '/',
-          secure: true,
-        });
-
         console.log('check-cookies');
-        console.log(token);
         console.log(getCookie('jwt_token'));
         console.log(res);
         window.location = res.data.redirect;

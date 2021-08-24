@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
@@ -6,16 +6,14 @@ import axios from 'axios';
 const SingUp = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [checkpassword, setCheckpassword] = useState('');
   const [email, setEmail] = useState('');
   const [phonenumber, setPhonenumber] = useState('');
+  const [passcheckMsg, setPasscheckMsg] = useState(
+    'password를 다시 입력해주세요.',
+  );
 
-  const handleSignUp = (e) => {
-    e.preventDefault();
-    console.log(username);
-    console.log(password);
-    console.log(email);
-    console.log(phonenumber);
-    console.log('signup');
+  const handleSignUp = () => {
     axios
       .post('/account/signup', {
         username,
@@ -27,6 +25,15 @@ const SingUp = () => {
         console.log(res);
       });
   };
+
+  useEffect(() => {
+    console.log(password);
+    if (password.length > 0 && password === checkpassword)
+      setPasscheckMsg('password 일치');
+    else if (password.length > 0 && checkpassword.length > 0)
+      setPasscheckMsg('password 불일치');
+    else setPasscheckMsg('password를 다시 입력해주세요.');
+  }, [checkpassword]);
 
   return (
     <div>
@@ -45,16 +52,18 @@ const SingUp = () => {
           type="password"
           placeholder="password(대문자,소문자,숫자 포함 8글자이상)"
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
         <br />
         <input
           type="password"
-          placeholder="check password"
+          placeholder="Re-enter password"
           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => setCheckpassword(e.target.value)}
           required
         />
+        <small>{passcheckMsg}</small>
         <br />
         <input
           type="email"

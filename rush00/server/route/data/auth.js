@@ -21,7 +21,7 @@ const loginPost = async (req, res) => {
         console.log('로그인 성공!');
         const getToken = () =>
           new Promise((resolve, reject) => {
-            cookie = jwt.sign(
+            jwt.sign(
               { username: userData.username },
               process.env.JWT_SECRET_KEY,
               {

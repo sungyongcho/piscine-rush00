@@ -12,7 +12,7 @@ const Board = () => {
   ]);
   axios
     .get(`/board`, {
-      params: { page: 1 },
+      params: { page: 2 },
     })
     .then((res) => {
       console.log(res);

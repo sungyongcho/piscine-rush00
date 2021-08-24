@@ -5,18 +5,27 @@ import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PropTypes from 'prop-types';
 
-const WriteBoard = ({ defaultTitle, defaultContent }) => {
+const WriteBoard = ({ contentId, defaultTitle, defaultContent }) => {
   const [title, setTitle] = useState(defaultTitle);
   const [content, setContent] = useState(defaultContent);
 
   const handleUpdateWrite = () => {
-    axios.defaults.baseURL = `http://localhost:${process.env.EXPRESS_PORT}`;
-    axios
-      .post('/board/write', {
-        title,
-        content,
-      })
-      .catch(console.log);
+    if (defaultTitle === '') {
+      axios
+        .post('/board/write', {
+          title,
+          content,
+        })
+        .catch(console.log);
+    } else {
+      axios
+        .put('/board/write', {
+          contentId,
+          title,
+          content,
+        })
+        .catch(console.log);
+    }
   };
 
   return (
@@ -41,6 +50,7 @@ const WriteBoard = ({ defaultTitle, defaultContent }) => {
 };
 
 WriteBoard.propTypes = {
+  contentId: PropTypes.string.isRequired,
   defaultTitle: PropTypes.string.isRequired,
   defaultContent: PropTypes.string.isRequired,
 };

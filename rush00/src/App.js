@@ -11,6 +11,7 @@ import Profile from './components/profile/Profile';
 import Board from './components/board/Board';
 import WriteBoard from './components/board/WriteBoard';
 import BoardContent from './components/board/BoardContent';
+import WriteComment from './components/comment/WriteComment';
 
 function App() {
   return (
@@ -49,6 +50,12 @@ function App() {
           exact
           path="/board/content/:contentId"
           component={BoardContent}
+        />
+        <PublicRoute
+          restricted
+          exact
+          path="/comment/write"
+          component={WriteComment}
         />
       </Switch>
     </BrowserRouter>

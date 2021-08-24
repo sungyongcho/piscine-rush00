@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import MDEditor from '@uiw/react-md-editor';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
+import WriteComment from '../comment/WriteComment';
+import CommentList from '../comment/CommentList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const BoardContent = ({ contentId }) => {
@@ -36,10 +38,12 @@ const BoardContent = ({ contentId }) => {
         </div>
         <Link
           to="/board/write"
-          params={{ defaultTitle: title, defaultContent: content }}
+          params={{ contentId, defaultTitle: title, defaultContent: content }}
         >
           <Button type="button">Modify</Button>
         </Link>
+        <CommentList />
+        <WriteComment />
       </div>
     );
   }
@@ -52,6 +56,8 @@ const BoardContent = ({ contentId }) => {
       <div>
         <MDEditor.Markdown source={content} />
       </div>
+      <CommentList />
+      <WriteComment />
     </div>
   );
 };

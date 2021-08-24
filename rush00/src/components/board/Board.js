@@ -16,7 +16,7 @@ const Board = () => {
     })
     .then((res) => {
       console.log(res);
-      setContentInfos(res.contentInfos);
+      setContentInfos(res.data.contentInfos);
     })
     .catch(console.log);
 

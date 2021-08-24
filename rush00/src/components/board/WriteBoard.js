@@ -1,23 +1,31 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import MDEditor from '@uiw/react-md-editor';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ReactDOM from 'react-dom';
-import MDEditor from '@uiw/react-md-editor';
-// import Editor from './Editor';
+import PropTypes from 'prop-types';
 
-const WriteBoard = () => {
-  const [title, setTitle] = useState('');
-  const [text, setText] = useState('**Hello world!!!**');
+const WriteBoard = ({ contentId, defaultTitle, defaultContent }) => {
+  const [title, setTitle] = useState(defaultTitle);
+  const [content, setContent] = useState(defaultContent);
 
   const handleUpdateWrite = () => {
-    axios.defaults.baseURL = `http://localhost:${process.env.EXPRESS_PORT}`;
-    axios
-      .post('/board/write', {
-        title,
-        text,
-      })
-      .catch(console.log);
+    if (defaultTitle === '') {
+      axios
+        .post('/board/write', {
+          title,
+          content,
+        })
+        .catch(console.log);
+    } else {
+      axios
+        .put('/board/write', {
+          contentId,
+          title,
+          content,
+        })
+        .catch(console.log);
+    }
   };
 
   return (
@@ -30,16 +38,21 @@ const WriteBoard = () => {
       />
       <br />
       <div className="container">
-        <MDEditor value={text} onChange={setText} />
-        <MDEditor.Markdown source={text} />
+        <MDEditor value={content} onChange={setContent} />
+        <MDEditor.Markdown source={content} />
       </div>
-      <br />
       <Button type="submit" onClick={handleUpdateWrite}>
         Update
       </Button>
       <br />
     </form>
   );
+};
+
+WriteBoard.propTypes = {
+  contentId: PropTypes.string.isRequired,
+  defaultTitle: PropTypes.string.isRequired,
+  defaultContent: PropTypes.string.isRequired,
 };
 
 export default WriteBoard;

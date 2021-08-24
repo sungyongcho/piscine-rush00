@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link, Redirect } from 'react-router-dom';
-// import { useJwt } from 'react-jwt';
 import { Cookies } from 'react-cookie';
+import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import { setJwt } from 'cookie-parser';
 
 const cookies = new Cookies();
 export const setCookie = (name, value, option) =>
@@ -18,21 +16,18 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(username);
-    console.log(password);
-    console.log('login');
     axios
       .post('/account/login', {
         username,
         password,
       })
       .then((res) => {
-        console.log('check-cookies');
-        console.log(getCookie('jwt_token'));
-        console.log(res);
+        getCookie('jwt_token');
         window.location = res.data.redirect;
       })
-      .catch(<Redirect to="/account/signup" />);
+      .catch(() => {
+        window.location = '/account/login';
+      });
   };
 
   const handleKeyPress = (event) => {

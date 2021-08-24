@@ -1,7 +1,9 @@
 const sequelize = require("sequelize");
+const { Board } = require('../../models')
 
 const showBoardList = async (req, res) => {
     const pageNum = req.query.page;
+    const ret = [];
     
     let offset = 0;
     const data = {
@@ -20,18 +22,14 @@ const showBoardList = async (req, res) => {
     boardData.then((resolve) => {
       data.contentInfos = resolve;
   
-      const newJson = resolve.map((element, index) => {
-        const returnObj = {};
-        returnObj[index] = {
+      resolve.map((element, index) => {
+        ret[index] = {
           content_id: element.dataValues.id,
           title: element.dataValues.title,
-        };
-  
-        return returnObj;
+        }
       });
-      console.log(newJson);
-  
-      data.contentInfos = newJson;
+      
+      data.contentInfos = ret;
       res.json(data.contentInfos);
     });
   };

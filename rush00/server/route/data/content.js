@@ -1,5 +1,5 @@
-const { User, Board, Comment } = require('../../models');
 const jwt = require('jsonwebtoken');
+const { User, Board, Comment } = require('../../models');
 
 const showBoard = async (req, res) => {
   const param = req.params;
@@ -65,11 +65,15 @@ const contentWrite = async (req, res) => {
   let user;
 
   try {
-    await jwt.verify(req.cookies.jwt_token, process.env.JWT_SECRET_KEY, (err, decoded) => {
-      if (err) console.log(err);
-      else user = decoded.username;
-    })
-    
+    await jwt.verify(
+      req.cookies.jwt_token,
+      process.env.JWT_SECRET_KEY,
+      (err, decoded) => {
+        if (err) console.log(err);
+        else user = decoded;
+      },
+    );
+
     const userData = await User.findOne({
       where: {
         username: user,
@@ -83,23 +87,24 @@ const contentWrite = async (req, res) => {
     })
       .then(() => console.log('글이 작성 되었습니다.'))
       .catch((err) => console.log(`오류 발생 : ${err}`));
-
   } catch (err) {
     console.log(err);
   }
-
 };
 
 const contentUpdate = (req, res) => {
   const data = req.body;
   const param = req.params;
 
-  Board.update({
-    title: data.title,
-    content: data.content,
-  }, {
-    where: { id: param.board_id },
-  })
+  Board.update(
+    {
+      title: data.title,
+      content: data.content,
+    },
+    {
+      where: { id: param.id },
+    },
+  )
     .then(() => console.log('글이 수정 되었습니다.'))
     .catch((err) => console.log(`오류 발생 : ${err}`));
 };
@@ -111,11 +116,15 @@ const commentWrite = async (req, res) => {
   let commentId;
 
   try {
-    await jwt.verify(req.cookies.jwt_token, process.env.JWT_SECRET_KEY, (err, decoded) => {
-      if (err) console.log(err);
-      else user = decoded.username;
-    })
-    
+    await jwt.verify(
+      req.cookies.jwt_token,
+      process.env.JWT_SECRET_KEY,
+      (err, decoded) => {
+        if (err) console.log(err);
+        else user = decoded;
+      },
+    );
+
     const userData = await User.findOne({
       where: {
         username: user,
@@ -126,8 +135,7 @@ const commentWrite = async (req, res) => {
       where: {
         id: param.board_id,
       },
-    })
-      .catch((err) => console.log(`오류 발생 : ${err}`));
+    }).catch((err) => console.log(`오류 발생 : ${err}`));
 
     const commentData = await Comment.findAll({
       where: {
@@ -149,11 +157,10 @@ const commentWrite = async (req, res) => {
     })
       .then(() => console.log('댓글 작성이 완료되었습니다.'))
       .catch((err) => console.log(`오류발생 : ${err}`));
-
   } catch (err) {
     console.log(err);
   }
-}
+};
 
 const commentUpdate = (req, res) => {
   const data = req.body;
@@ -171,7 +178,7 @@ const commentUpdate = (req, res) => {
   })
     .then(() => console.log('댓글이 수정 되었습니다.'))
     .catch((err) => console.log(`오류 발생 : ${err}`));
-}
+};
 
 module.exports.showBoard = showBoard;
 module.exports.contentWrite = contentWrite;

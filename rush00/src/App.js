@@ -11,6 +11,7 @@ import Profile from './components/profile/Profile';
 import Board from './components/board/Board';
 import WriteBoard from './components/board/WriteBoard';
 import BoardContent from './components/board/BoardContent';
+import WriteComment from './components/comment/WriteComment';
 
 function App() {
   return (
@@ -19,37 +20,22 @@ function App() {
       <Switch>
         <PublicRoute restricted={false} exact path="/" component={Main} />
         <PublicRoute restricted exact path="/account/login" component={Login} />
-        <PublicRoute
-          restricted
-          exact
-          path="/account/logout"
-          component={Logout}
-        />
+        <PrivateRoute exact path="/account/logout" component={Logout} />
         <PublicRoute
           restricted
           exact
           path="/account/signup"
           component={SignUp}
         />
-        <PublicRoute
-          restricted
-          exact
-          path="/account/profile"
-          component={Profile}
-        />
-        <PublicRoute restricted exact path="/board" component={Board} />
-        <PublicRoute
-          restricted
-          exact
-          path="/board/write"
-          component={WriteBoard}
-        />
-        <PublicRoute
-          restricted
+        <PrivateRoute exact path="/account/profile" component={Profile} />
+        <PrivateRoute exact path="/board" component={Board} />
+        <PrivateRoute exact path="/board/write" component={WriteBoard} />
+        <PrivateRoute
           exact
           path="/board/content/:contentId"
           component={BoardContent}
         />
+        <PrivateRoute exact path="/comment/write" component={WriteComment} />
       </Switch>
     </BrowserRouter>
   );

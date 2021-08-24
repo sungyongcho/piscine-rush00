@@ -8,6 +8,10 @@ module.exports = class Comment extends Sequelize.Model {
           type: Sequelize.STRING(255),
           allowNull: false,
         },
+        comment_id: {
+          type: Sequelize.INTEGER(11),
+          allowNull: false,
+        },
         created_at: {
           type: Sequelize.DATE,
           allowNull: false,

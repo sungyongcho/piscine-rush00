@@ -7,19 +7,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import BoardContentList from './BoardContentList';
 import Spinner from '../etc/Spinner';
 import './Board.css';
+import getCookie from '../../utils/isLogin';
 
 const Board = () => {
   const [loading, setLoading] = useState({ loading: true });
   const [contentInfos, setContentInfos] = useState([]);
   const [page, setPage] = useState(1);
-
   useEffect(() => {
     axios
-      .get(`/board`, {
-        params: { page },
+      .get(`/board?page=${page}`, {
+        header: {
+          Cookie: getCookie('jwt_token'),
+        },
       })
       .then((res) => {
-        setContentInfos(res.data.contentInfos);
+        console.log('hihi2');
+        console.log(res.data);
+        console.log('hihi2');
+        setContentInfos(res.data);
+        // console.log(res.data.contentInfos);
       })
       .catch(console.log);
   }, [page]);
@@ -40,7 +46,9 @@ const Board = () => {
         pageRangeDisplayed={5} // paginator에서 보여줄 페이지의 범위
         prevPageText="‹" // 이전을 나타낼 텍스트
         nextPageText="›" // 다음을 나타낼 텍스트
-        onChange={(e) => setPage(e.target.value)} // 페이지가 바뀔때 handling해줄 함수
+        onChange={(e) => {
+          setPage(e);
+        }} // 페이지가 바뀔때 handling해줄 함수
       />
     </div>
   );

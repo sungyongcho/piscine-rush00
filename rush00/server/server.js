@@ -10,7 +10,8 @@ const app = express();
 
 require('dotenv').config();
 
-const port = process.env.EXPRESS_PORT || 3001;
+// const port = process.env.EXPRESS_PORT || 3001;
+const port = 80;
 
 app.set('port', port);
 

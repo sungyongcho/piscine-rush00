@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Cookies from 'js-cookie';
 import { Link, Redirect } from 'react-router-dom';
+// import { useJwt } from 'react-jwt';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import getJwt from '../../utils/getJwt';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // axios.defaults.baseURL = `http://localhost:${process.env.EXPRESS_PORT}`;
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log(username);
+    console.log(password);
+    console.log('login');
     axios
-      .post('http://localhost:4242/account/login', {
+      .post('/account/login', {
         username,
         password,
       })
       .then((res) => {
-        Cookies.set('token', res.headers.jwt_cookie);
+        console.log(res);
+        getJwt();
       })
       .catch(<Redirect to="/account/signup" />);
   };

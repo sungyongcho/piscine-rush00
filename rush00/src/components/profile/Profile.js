@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Cookies from 'js-cookie';
 
 const Profile = () => {
   const [username, setUsername] = useState('');
@@ -8,11 +7,7 @@ const Profile = () => {
   const [phonenumber, setPhonenumber] = useState('');
 
   axios
-    .get('/account/profile', {
-      headers: {
-        Authorization: `Bearer ${Cookies.get('token')}`,
-      },
-    })
+    .get('/account/profile')
     .then((res) => {
       console.log(res);
       setUsername(res.data.username);

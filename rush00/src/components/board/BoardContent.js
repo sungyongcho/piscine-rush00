@@ -42,7 +42,7 @@ const BoardContent = ({ contentId }) => {
         >
           <Button type="button">Modify</Button>
         </Link>
-        <CommentList />
+        <CommentList comments={comments} />
         <WriteComment />
       </div>
     );
@@ -56,7 +56,7 @@ const BoardContent = ({ contentId }) => {
       <div>
         <MDEditor.Markdown source={content} />
       </div>
-      <CommentList />
+      <CommentList comments={comments} />
       <WriteComment />
     </div>
   );

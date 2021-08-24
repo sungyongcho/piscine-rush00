@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const WriteComment = () => {
+const WriteComment = ({ commentId }) => {
   const [comment, setComment] = useState('');
 
   const handleWriteComment = () => {

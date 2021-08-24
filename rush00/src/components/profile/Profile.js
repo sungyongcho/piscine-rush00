@@ -6,7 +6,7 @@ const Profile = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [phonenumber, setPhonenumber] = useState('');
-  const [loading, setLoading] = useState({ loading: true });
+  const [loading, setLoading] = useState(true);
 
   axios
     .get('/account/profile')
@@ -17,10 +17,11 @@ const Profile = () => {
       setLoading(false);
     })
     .catch(console.log);
+
   return (
     <div>
       {loading ? <Spinner /> : null}
-      <h1>This is Profile page.</h1>
+      <h1>Your profile page</h1>
       <ul>
         <li>username: {username}</li>
         <li>email: {email}</li>

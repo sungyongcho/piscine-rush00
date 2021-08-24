@@ -42,8 +42,8 @@ const BoardContent = ({ contentId }) => {
         >
           <Button type="button">Modify</Button>
         </Link>
-        {/* <CommentList comments={comments} /> */}
-        {/* <WriteComment /> */}
+        <CommentList comments={comments} />
+        <WriteComment />
       </div>
     );
   }
@@ -56,8 +56,8 @@ const BoardContent = ({ contentId }) => {
       <div>
         <MDEditor.Markdown source={content} />
       </div>
-      {/* <CommentList comments={comments} /> */}
-      {/* <WriteComment /> */}
+      <CommentList comments={comments} />
+      <WriteComment />
     </div>
   );
 };

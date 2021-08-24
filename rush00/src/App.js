@@ -5,6 +5,7 @@ import PublicRoute from './components/route/PublicRoute';
 import PrivateRoute from './components/route/PrivateRoute';
 import Main from './components/Main';
 import Login from './components/account/Login';
+import Logout from './components/account/Logout';
 import SignUp from './components/account/SignUp';
 import Profile from './components/profile/Profile';
 import Board from './components/board/Board';
@@ -18,6 +19,12 @@ function App() {
       <Switch>
         <PublicRoute restricted={false} exact path="/" component={Main} />
         <PublicRoute restricted exact path="/account/login" component={Login} />
+        <PublicRoute
+          restricted
+          exact
+          path="/account/logout"
+          component={Logout}
+        />
         <PublicRoute
           restricted
           exact

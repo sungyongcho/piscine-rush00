@@ -14,45 +14,50 @@ const showBoard = async (req, res) => {
       id: param.board_id,
     }
   })
+  .catch((err) => console.log(`오류 발생 ${err}`));
   
-  const comment = await Comment.findAll({
-    where: {
-      board_id: board.id,
-    }
-  })
-
-  const userBoard = await User.findOne({
-    where: {
-      id: board.user_id,
-    }
-  })
-  
-  data.boardData = {
-    author: userBoard.username,
-    title: board.title,
-    content: board.content,
-  }
-
-  for (let i = 0; i < comment.length; i++) {
-
-    const userComment = await User.findOne({
+  if (board) {
+    const comment = await Comment.findAll({
       where: {
-        id: comment[i].dataValues.user_id,
+        board_id: board.id,
       }
     })
+    .catch((err) => console.log(`오류 발생 ${err}`));
 
-    data.commentData[i] = {
-      author: userComment.username,
-      content: comment[i].dataValues.comment,
+    const userBoard = await User.findOne({
+      where: {
+        id: board.user_id,
+      }
+    })
+    .catch((err) => console.log(`오류 발생 ${err}`));
+    
+    data.boardData = {
+      author: userBoard.username,
+      title: board.title,
+      content: board.content,
     }
+
+    for (let i = 0; i < comment.length; i++) {
+
+      const userComment = await User.findOne({
+        where: {
+          id: comment[i].dataValues.user_id,
+        }
+      })
+
+      data.commentData[i] = {
+        author: userComment.username,
+        content: comment[i].dataValues.comment,
+      }
+    }
+
+    await jwt.verify(req.cookies.jwt_token, process.env.JWT_SECRET_KEY, (err, decoded) => {
+      if (err) console.log(`오류 발생 : ${err}`);
+      else data.requestUser = decoded.username;
+    });
+
+    res.json({ "getBoard": data });
   }
-
-  await jwt.verify(req.cookies.jwt_token, process.env.JWT_SECRET_KEY, (err, decoded) => {
-    if (err) console.log(`오류 발생 : ${err}`);
-    else data.requestUser = decoded.username;
-  });
-
-  res.json({ "getBoard": data });
 }
 
 const contentWrite = async (req, res) => {

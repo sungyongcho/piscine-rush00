@@ -11,6 +11,6 @@ router
 .get('/content/:board_id', content.showBoard)
 .post('/content/:board_id', content.commentWrite)
 .put('/content/:board_id', content.commentUpdate)
-.get('/list', list.showBoardList)
+.get('', list.showBoardList)
 
 module.exports = router;

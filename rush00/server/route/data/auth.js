@@ -78,7 +78,8 @@ const logoutGet = async (req, res) => {
     where: {
       username: user.username,
     },
-  });
+  })
+    .catch((err) => console.log(`오류 발생 ${err}`));
 
   if (userData.username === user.username) {
     console.log('로그아웃 성공');
@@ -104,7 +105,8 @@ const getProfile = async (req, res) => {
     where: {
       username: userData.username,
     }
-  });
+  })
+    .catch((err) => console.log(`오류 발생 ${err}`));
 
   userData.email = user.email;
   userData.accountDate = user.created_at;

@@ -22,7 +22,7 @@ const BoardContentList = ({ contentInfos }) => {
 
 BoardContentList.propTypes = {
   contentInfos: PropTypes.arrayOf({
-    concontentIdtent_id: PropTypes.number.isRequired,
+    contentId: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     writername: PropTypes.string.isRequired,
   }).isRequired,

@@ -19,8 +19,6 @@ const Login = () => {
         { withCredentials: true },
       )
       .then((res) => {
-        console.log('check-cookies');
-        console.log(res);
         window.location = res.data.redirect;
       })
       .catch(<Redirect to="/account/signup" />);

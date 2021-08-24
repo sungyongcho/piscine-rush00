@@ -24,8 +24,9 @@ const WriteBoard = () => {
         type="text"
         placeholder="글 제목"
         value={title}
-        onChange={(e) => setTitle(e.currentTarget.value)}
+        onChange={(e) => setTitle(e.target.value)}
       />
+      <br />
       <div className="container">
         <MDEditor value={text} onChange={setText} />
         <MDEditor.Markdown source={text} />

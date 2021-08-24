@@ -7,8 +7,7 @@ const BoardContent = ({ contentId }) => {
   const [text, setText] = useState('text');
   const [writername, setWriterName] = useState('writer');
 
-  axios
-    .get(`/board/content/${contentId}`)
+  axios.get(`/board/content/${contentId}`)
     .then((res) => {
       setTitle(res.data.title);
       setText(res.data.text);

@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "js-cookie": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
+    "katex": "^0.13.13",
     "mariadb": "^2.5.4",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.12",

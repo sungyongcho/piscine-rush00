@@ -5,7 +5,9 @@ import { Redirect } from 'react-router-dom';
 const Logout = () => {
   axios //
     .get('/account/logout')
-    .then(<Redirect to="/" />)
+    .then((res) => {
+      window.location = res.data.redirect;
+    })
     .catch((e) => {
       console.log(e);
     });

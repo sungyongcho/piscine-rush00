@@ -33,7 +33,6 @@ const loginPost = async (req, res) => {
           });
         getToken().then((token) => {
           res.cookie('jwt_token', token, {
-            httpOnly: true,
             maxAge: 60 * 60 * 1000,
           });
           res.status(200).json({ redirect: '/' });

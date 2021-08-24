@@ -3,11 +3,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import BoardContent from './BoardContent';
 
 const BoardContentList = ({ contentInfos }) => {
-  //   const showOneContent = () => <BoardContent />;
-
   const boardContentList = contentInfos.map(
     ({ contentId, title, writername }) => (
       <form>

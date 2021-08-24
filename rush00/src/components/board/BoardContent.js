@@ -8,8 +8,7 @@ const BoardContent = ({ contentId }) => {
   const [writername, setWriterName] = useState('writer');
 
   axios
-    // .get(`/board/content?board_id=${contentId}`)
-    .get(`/board/content?board_content=${contentId}`)
+    .get(`/board/content/${contentId}`)
     .then((res) => {
       setTitle(res.data.title);
       setText(res.data.text);
@@ -17,7 +16,6 @@ const BoardContent = ({ contentId }) => {
     })
     .catch(console.log);
 
-  // text html로 변환해야함
   return (
     <div>
       <h2>{title}</h2>

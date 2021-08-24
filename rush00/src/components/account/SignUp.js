@@ -10,13 +10,7 @@ const SingUp = () => {
   const [email, setEmail] = useState('');
   const [phonenumber, setPhonenumber] = useState('');
 
-  const handleSignUp = (e) => {
-    e.preventDefault();
-    console.log(username);
-    console.log(password);
-    console.log(email);
-    console.log(phonenumber);
-    console.log('signup');
+  const handleSignUp = () => {
     axios
       .post('/account/signup', {
         username,

@@ -5,12 +5,7 @@ const { User } = require('../../models');
 
 const loginPost = async (req, res) => {
   const info = req.body;
-<<<<<<< HEAD
-  let cookie;
-
-=======
   
->>>>>>> jiwlee
   try {
     const userData = await User.findOne({
       where: {
@@ -47,6 +42,7 @@ const loginPost = async (req, res) => {
               maxAge: 60 * 60 * 1000,
             })
             .send('gogo');
+          res.json({ redirect: '/' });
         });
       }
     }
@@ -67,6 +63,7 @@ const singupPost = (req, res) => {
   })
     .then(() => {
       console.log('회원가입을 축하드립니다.');
+      res.json({ redirect: '/' });
     })
     .catch((err) => console.log(err));
 };
@@ -88,7 +85,11 @@ const logoutGet = async (req, res) => {
     },
   });
 
-  if (userData.username === user) res.clearCookie('jwt_token');
+  if (userData.username === user) {
+    console.log('로그아웃 성공');
+    res.clearCookie('jwt_token');
+    res.json({ redirect: '/' });
+  }
   else console.log('잘못된 로그아웃 요청');
 };
 

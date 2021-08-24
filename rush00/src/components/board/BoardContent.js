@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import MDEditor from '@uiw/react-md-editor';
+import PropTypes from 'prop-types';
+import { Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const BoardContent = ({ contentId }) => {
   const [title, setTitle] = useState('');
@@ -21,17 +24,33 @@ const BoardContent = ({ contentId }) => {
     })
     .catch(console.log);
 
+  if (author === username) {
+    return (
+      <div>
+        <h2>{title}</h2>
+        <br />
+        <small>{author}</small>
+        <br />
+        <div>
+          <MDEditor.Markdown source={content} />
+        </div>
+        <Link
+          to="/board/write"
+          params={{ defaultTitle: title, defaultContent: content }}
+        >
+          <Button type="button">Modify</Button>
+        </Link>
+      </div>
+    );
+  }
   return (
     <div>
       <h2>{title}</h2>
-      <div className="container">
-        <MDEditor value={content} onChange={setContent} />
-        <MDEditor.Markdown source={content} />
-      </div>
       <br />
       <small>{author}</small>
+      <br />
       <div>
-        <section />
+        <MDEditor.Markdown source={content} />
       </div>
     </div>
   );

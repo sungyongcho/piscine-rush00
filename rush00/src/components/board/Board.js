@@ -22,7 +22,7 @@ const Board = () => {
     <div>
       <h1>This is board page.</h1>
       <BoardContentList contentInfos={contentInfos} />
-      <Link to="/board/write">
+      <Link to="/board/write" params={{ defaultTitle: '', defaultContent: '' }}>
         <Button type="button">write</Button>
       </Link>
       <Paging />

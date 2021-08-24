@@ -19,8 +19,8 @@ const loginPost = async (req, res) => {
       if (!compare) console.log('비밀번호가 맞지 않습니다.');
       else {
         console.log('로그인 성공!');
-        const getToken = () => {
-          return new Promise((resolve, reject) => {
+        const getToken = () =>
+          new Promise((resolve, reject) => {
             cookie = jwt.sign(
               { username: userData.username },
               process.env.JWT_SECRET_KEY,
@@ -33,16 +33,12 @@ const loginPost = async (req, res) => {
               },
             );
           });
-        };
         getToken().then((token) => {
-          res
-            .status(200)
-            .cookie('jwt_token', token, {
-              httpOnly: true,
-              maxAge: 60 * 60 * 1000,
-            })
-            .send('gogo');
-          res.json({ redirect: '/' });
+          res.cookie('jwt_token', token, {
+            httpOnly: true,
+            maxAge: 60 * 60 * 1000,
+          });
+          res.status(200).json({ redirect: '/' });
         });
       }
     }
@@ -89,8 +85,7 @@ const logoutGet = async (req, res) => {
     console.log('로그아웃 성공');
     res.clearCookie('jwt_token');
     res.json({ redirect: '/' });
-  }
-  else console.log('잘못된 로그아웃 요청');
+  } else console.log('잘못된 로그아웃 요청');
 };
 
 module.exports.loginPost = loginPost;

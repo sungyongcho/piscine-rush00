@@ -5,7 +5,7 @@ const { User } = require('../../models');
 
 const loginPost = async (req, res) => {
   const info = req.body;
-  
+
   try {
     const userData = await User.findOne({
       where: {

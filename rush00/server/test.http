@@ -1,7 +1,6 @@
-POST http://localhost:4242/account/login HTTP/1.1
+POST http://localhost:4242/board/content/2 HTTP/1.1
 Content-Type: application/json
 
 {
-    "username" : "seonkim",
-    "password" : "Aa123123"
+    "comment": "2번째 게시글 댓글 1"
 }

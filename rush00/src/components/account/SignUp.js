@@ -23,6 +23,10 @@ const SingUp = () => {
       })
       .then((res) => {
         console.log(res);
+        window.location = '/account/login';
+      })
+      .catch(() => {
+        window.location = '/';
       });
   };
 

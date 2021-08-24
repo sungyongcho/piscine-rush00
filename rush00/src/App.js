@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import Nav from './components/Nav';
 import PublicRoute from './components/route/PublicRoute';
-// import PrivateRoute from './components/route/PrivateRoute';
+import PrivateRoute from './components/route/PrivateRoute';
 import Main from './components/Main';
 import Login from './components/account/Login';
 import Logout from './components/account/Logout';
@@ -31,20 +31,20 @@ function App() {
           path="/account/signup"
           component={SignUp}
         />
-        <PublicRoute
+        <PrivateRoute
           restricted
           exact
           path="/account/profile"
           component={Profile}
         />
-        <PublicRoute restricted exact path="/board" component={Board} />
-        <PublicRoute
+        <PrivateRoute restricted exact path="/board" component={Board} />
+        <PrivateRoute
           restricted
           exact
           path="/board/write"
           component={WriteBoard}
         />
-        <PublicRoute
+        <PrivateRoute
           restricted
           exact
           path="/board/content/:contentId"

@@ -7,9 +7,7 @@ import BoardContentList from './BoardContentList';
 import Paging from './Paging';
 
 const Board = () => {
-  const [contentInfos, setContentInfos] = useState([
-    { contentId: 1, title: 'aaa', writername: 'bbb' },
-  ]);
+  const [contentInfos, setContentInfos] = useState([]);
   axios
     .get(`/board`, {
       params: { page: 1 },
